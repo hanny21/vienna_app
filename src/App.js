@@ -13,8 +13,10 @@ class App extends Component {
       myLocations: [],
       myMarkers: [],
       showedMarkers: [],
+      currentMarker: {},
       myInfoWindow: {},
     };
+    this.showInfoWindow = this.showInfoWindow.bind(this);
   }
 
   componentWillReceiveProps ({ isScriptLoadSucceed }) {
@@ -37,36 +39,41 @@ class App extends Component {
     const largeInfowindow = new window.google.maps.InfoWindow();
     // create the markers
     for (let i = 0; i < locations.length; i++) {
+      let id = locations[i].id;
       let title = locations[i].name;
       let position = {lat: locations[i].latitude, lng: locations[i].longitude};
-      // Create a marker per location, and put into markers array.
+      // create a marker per location, and set its attributes
       let marker = new window.google.maps.Marker({
         map: map,
-        id: i,
+        id: id,
         title: title,
         position: position,
         animation: window.google.maps.Animation.DROP,
       });
       markers.push(marker);
-      marker.addListener('click', function() {
-        if (largeInfowindow.marker !== marker) {
-          largeInfowindow.marker = marker;
-          largeInfowindow.setContent('<h3>' + marker.title + '</h3>');
-          largeInfowindow.open(map, marker);
-          largeInfowindow.addListener('closeclick',function(){
-            largeInfowindow.setMarker = null;
-          });
-        }
-      });
-      // update the state of the component
-      this.setState({
-        myMap: map,
-        myLocations: locations,
-        myMarkers: markers,
-        showedMarkers: markers,
-        myInfoWindow: largeInfowindow,
+      // add listener to each marker to show the info window and
+      // update the currentMarker in App state
+      marker.addListener('click', () => {
+        this.showInfoWindow(marker);
       });
     }
+    // update the state of the App component
+    this.setState({
+      myMap: map,
+      myLocations: locations,
+      myMarkers: markers,
+      showedMarkers: markers,
+      myInfoWindow: largeInfowindow,
+    });
+  }
+
+  showInfoWindow(marker) {
+    this.setState({currentMarker: marker});
+    const { myInfoWindow, myMap } = this.state;
+    myInfoWindow.marker = marker;
+    myInfoWindow.setContent('<h3>' + marker.title + '</h3>');
+    myInfoWindow.open(myMap, marker);
+    myInfoWindow.addListener('closeclick', () => myInfoWindow.setMarker = null);
   }
 
   render() {
@@ -78,7 +85,9 @@ class App extends Component {
         <div className="container">
           <div className="list">
             <ListOfPlaces
-              myLocations={this.state.myLocations}
+              myLocations={ this.state.myLocations }
+              myMarkers={ this.state.myMarkers }
+              showInfoWindow={ this.showInfoWindow }
             />
           </div>
           <div id="map" className="containerMap" role="application">
@@ -90,5 +99,5 @@ class App extends Component {
 }
 
 export default scriptLoader(
-  ['https://maps.googleapis.com/maps/api/js?key=AIzaSyCIdfdeONwrrY384AG12ytO-u0khoGIwIA']
+  ['https://maps.googleapis.com/maps/api/js?key=AIzaSyCIdfdeONwrrY384AG12ytO-u0khoGIwIA&language=en']
 )(App);

@@ -1,30 +1,36 @@
 [
   {
+    "id": 1,
     "name": "Belvedere",
     "latitude": 48.191439,
     "longitude": 16.380787
   },
   {
+    "id": 2,
     "name": "Hofburg",
     "latitude": 48.206507,
     "longitude": 16.365262
   },
   {
+    "id": 3,
     "name": "Volksgarten",
     "latitude": 48.208056,
     "longitude": 16.361111
   },
   {
+    "id": 4,
     "name": "Schönbrunn Palace",
     "latitude": 48.184516,
     "longitude": 16.311865
   },
   {
+    "id": 5,
     "name": "Karlskirche",
     "latitude": 48.198333,
     "longitude": 16.371389
   },
   {
+    "id": 6,
     "name": "St. Stephen's Cathedral",
     "latitude": 48.2085,
     "longitude": 16.373

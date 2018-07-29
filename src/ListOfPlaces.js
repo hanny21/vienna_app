@@ -32,11 +32,20 @@ class ListOfPlaces extends Component {
   }
 
   render() {
-    const { myLocations } = this.props;
+    const { myLocations, myMarkers, showInfoWindow } = this.props;
+    let selectedMarker;
     return <div>
       <input type='text' style={inputStyle} placeholder='Type to filter places...'/>
       <ul style={ulStyle}>
-        { myLocations.map((place) => (<li key={place.name} style={liStyle}>{place.name}</li>)) }
+        { myLocations.map((location) => (<li
+          key={location.id}
+          onClick={() => {
+            selectedMarker = myMarkers.filter((marker) => marker.id === location.id);
+            showInfoWindow(selectedMarker[0]);
+          }}
+          style={liStyle}>
+          {location.name}
+        </li>)) }
       </ul>
     </div>;
   }
@@ -44,6 +53,8 @@ class ListOfPlaces extends Component {
 
 ListOfPlaces.propTypes = {
   myLocations: PropTypes.array.isRequired,
+  myMarkers: PropTypes.array.isRequired,
+  showInfoWindow: PropTypes.func.isRequired,
 };
 
 export default ListOfPlaces;
