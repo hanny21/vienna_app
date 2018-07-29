@@ -9,12 +9,11 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      myMap: '',
+      myMap: {},
       myLocations: [],
       myMarkers: [],
       showedMarkers: [],
-      myInfoWindow: '',
-      currentMarker: {}
+      myInfoWindow: {},
     };
   }
 
@@ -49,6 +48,16 @@ class App extends Component {
         animation: window.google.maps.Animation.DROP,
       });
       markers.push(marker);
+      marker.addListener('click', function() {
+        if (largeInfowindow.marker !== marker) {
+          largeInfowindow.marker = marker;
+          largeInfowindow.setContent('<h3>' + marker.title + '</h3>');
+          largeInfowindow.open(map, marker);
+          largeInfowindow.addListener('closeclick',function(){
+            largeInfowindow.setMarker = null;
+          });
+        }
+      });
       // update the state of the component
       this.setState({
         myMap: map,
