@@ -13,5 +13,20 @@
     "name": "Volksgarten",
     "latitude": 48.208056,
     "longitude": 16.361111
+  },
+  {
+    "name": "Schönbrunn Palace",
+    "latitude": 48.184516,
+    "longitude": 16.311865
+  },
+  {
+    "name": "Karlskirche",
+    "latitude": 48.198333,
+    "longitude": 16.371389
+  },
+  {
+    "name": "St. Stephen's Cathedral",
+    "latitude": 48.2085,
+    "longitude": 16.373
   }
 ]
