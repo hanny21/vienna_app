@@ -9,7 +9,7 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      myMap: {},
+      myMap: '',
       myLocations: [],
       myMarkers: [],
       showedMarkers: [],
@@ -68,12 +68,15 @@ class App extends Component {
   }
 
   showInfoWindow(marker) {
-    this.setState({currentMarker: marker});
-    const { myInfoWindow, myMap } = this.state;
-    myInfoWindow.marker = marker;
-    myInfoWindow.setContent('<h3>' + marker.title + '</h3>');
-    myInfoWindow.open(myMap, marker);
-    myInfoWindow.addListener('closeclick', () => myInfoWindow.setMarker = null);
+    // check if the info window for a marker is not already open
+    if (marker.id !== this.state.currentMarker.id) {
+      this.setState({currentMarker: marker});
+      const { myInfoWindow, myMap } = this.state;
+      myInfoWindow.marker = marker;
+      myInfoWindow.setContent('<h3>' + marker.title + '</h3>');
+      myInfoWindow.open(myMap, marker);
+      myInfoWindow.addListener('closeclick', () => myInfoWindow.setMarker = null);
+    }
   }
 
   render() {
