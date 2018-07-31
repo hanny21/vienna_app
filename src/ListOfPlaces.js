@@ -19,7 +19,6 @@ const liStyle = {
 const inputStyle = {
   'marginTop': '20px',
   'padding': '15px',
-  'marginLeft': '5px',
   'border': '1px solid #fff',
   'borderRadius': '5px',
   'width': '75%'
@@ -38,17 +37,21 @@ class ListOfPlaces extends Component {
   }
 
   render() {
-    const { myLocations, myMarkers, showInfoWindow } = this.props;
+    const { myLocations, showInfoWindow } = this.props;
+    let { myMarkers } = this.props;
     const { query } = this.state;
-    let selectedMarker;
-    let showedLocations;
+    let selectedMarker; // marker which was clicked
+    let showedLocations; // locations that match regex expression
 
     if (query) {
       const match = new RegExp(escapeRegExp(query), 'i');
       showedLocations = myLocations.filter((location) => match.test(location.name));
+      myMarkers = myMarkers.map((marker) => marker.setVisible(match.test(marker.title)));
     } else {
       showedLocations = myLocations;
+      myMarkers = myMarkers.map((marker) => marker.setVisible(true));
     }
+    // sort the list of places alphabetically
     showedLocations.sort(sortBy('name'));
 
     return <div>

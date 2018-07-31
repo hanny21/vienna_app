@@ -26,9 +26,9 @@ class App extends Component {
 
   initMap() {
     // create the map
-    let locations = [...data];
-    let markers = [];
-    let map = new window.google.maps.Map(document.getElementById('map'), {
+    const locations = [...data];
+    const markers = [];
+    const map = new window.google.maps.Map(document.getElementById('map'), {
       center: {lat: 48.210033, lng: 16.363449},
       zoom: 13,
       mapTypeControl: false,
