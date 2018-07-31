@@ -34,7 +34,7 @@ class App extends Component {
       mapTypeControl: false,
       styles: mapStyle,
     });
-    // create InfoWindow
+    // create InfoWindow and bounds
     const largeInfowindow = new window.google.maps.InfoWindow();
     // create the markers
     for (let location of locations) {
@@ -68,12 +68,17 @@ class App extends Component {
   showInfoWindow(marker) {
     // check if the info window for a marker is not already open
     if (marker.id !== this.state.currentMarker.id) {
-      this.setState({currentMarker: marker});
       const { myInfoWindow, myMap } = this.state;
+      // animate the marker
+      marker.setAnimation(window.google.maps.Animation.BOUNCE);
+      setTimeout(() => marker.setAnimation(window.google.maps.Animation.NONE), 1000);
+      myMap.setCenter(marker.position);
+      // set and open the infowindow
       myInfoWindow.marker = marker;
       myInfoWindow.setContent('<h3>' + marker.title + '</h3>');
       myInfoWindow.open(myMap, marker);
       myInfoWindow.addListener('closeclick', () => myInfoWindow.setMarker = null);
+      this.setState({currentMarker: marker});
     }
   }
 
