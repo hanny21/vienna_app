@@ -89,6 +89,7 @@ class App extends Component {
               myLocations={ this.state.myLocations }
               myMarkers={ this.state.myMarkers }
               showInfoWindow={ this.showInfoWindow }
+              myInfoWindow={ this.state.myInfoWindow }
             />
           </div>
           <div id="map" className="containerMap" role="application">

@@ -37,19 +37,23 @@ class ListOfPlaces extends Component {
   }
 
   render() {
-    const { myLocations, showInfoWindow } = this.props;
-    let { myMarkers } = this.props;
+    const { myLocations, myMarkers, showInfoWindow, myInfoWindow } = this.props;
     const { query } = this.state;
     let selectedMarker; // marker which was clicked
     let showedLocations; // locations that match regex expression
+    let markers; // eslint-disable-line no-unused-vars
 
     if (query) {
       const match = new RegExp(escapeRegExp(query), 'i');
       showedLocations = myLocations.filter((location) => match.test(location.name));
-      myMarkers = myMarkers.map((marker) => marker.setVisible(match.test(marker.title)));
+      markers = myMarkers.map((marker) => marker.setVisible(match.test(marker.title)));
+      // close infoWindow when the marker is hidden
+      if (!match.test(myInfoWindow.marker.title)) {
+        myInfoWindow.close();
+      }
     } else {
       showedLocations = myLocations;
-      myMarkers = myMarkers.map((marker) => marker.setVisible(true));
+      markers = myMarkers.map((marker) => marker.setVisible(true));
     }
     // sort the list of places alphabetically
     showedLocations.sort(sortBy('name'));
@@ -80,6 +84,7 @@ ListOfPlaces.propTypes = {
   myLocations: PropTypes.array.isRequired,
   myMarkers: PropTypes.array.isRequired,
   showInfoWindow: PropTypes.func.isRequired,
+  myInfoWindow: PropTypes.object.isRequired,
 };
 
 export default ListOfPlaces;
