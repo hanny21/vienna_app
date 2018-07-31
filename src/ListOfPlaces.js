@@ -48,7 +48,7 @@ class ListOfPlaces extends Component {
       showedLocations = myLocations.filter((location) => match.test(location.name));
       markers = myMarkers.map((marker) => marker.setVisible(match.test(marker.title)));
       // close infoWindow when the marker is hidden
-      if (!match.test(myInfoWindow.marker.title)) {
+      if ((myInfoWindow.marker) && (!match.test(myInfoWindow.marker.title))) {
         myInfoWindow.close();
       }
     } else {
