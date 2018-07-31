@@ -9,10 +9,9 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      myMap: '',
+      myMap: {},
       myLocations: [],
       myMarkers: [],
-      showedMarkers: [],
       currentMarker: {},
       myInfoWindow: {},
     };
@@ -38,10 +37,10 @@ class App extends Component {
     // create InfoWindow
     const largeInfowindow = new window.google.maps.InfoWindow();
     // create the markers
-    for (let i = 0; i < locations.length; i++) {
-      let id = locations[i].id;
-      let title = locations[i].name;
-      let position = {lat: locations[i].latitude, lng: locations[i].longitude};
+    for (let location of locations) {
+      let id = location.id;
+      let title = location.name;
+      let position = {lat: location.latitude, lng: location.longitude};
       // create a marker per location, and set its attributes
       let marker = new window.google.maps.Marker({
         map: map,
@@ -62,7 +61,6 @@ class App extends Component {
       myMap: map,
       myLocations: locations,
       myMarkers: markers,
-      showedMarkers: markers,
       myInfoWindow: largeInfowindow,
     });
   }
@@ -83,7 +81,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">My favourite places in Vienna</h1>
+          <h1 className="App-title">Top 10 places in Vienna</h1>
         </header>
         <div className="container">
           <div className="list">

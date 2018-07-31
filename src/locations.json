@@ -34,5 +34,29 @@
     "name": "St. Stephen's Cathedral",
     "latitude": 48.2085,
     "longitude": 16.373
+  },
+  {
+    "id": 7,
+    "name": "Albertina",
+    "latitude": 48.204167,
+    "longitude": 16.368611
+  },
+  {
+    "id": 8,
+    "name": "Prater",
+    "latitude": 48.216111,
+    "longitude": 16.395556
+  },
+  {
+    "id": 9,
+    "name": "Gloriette",
+    "latitude": 48.178056,
+    "longitude": 16.308333
+  },
+  {
+    "id": 10,
+    "name": "Vienna City Hall",
+    "latitude": 48.210833,
+    "longitude": 16.356944
   }
 ]

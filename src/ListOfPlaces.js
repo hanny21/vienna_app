@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import escapeRegExp from 'escape-string-regexp';
+import sortBy from 'sort-by';
 
 const ulStyle = {
   'listStyleType': 'none',
@@ -27,17 +29,37 @@ class ListOfPlaces extends Component {
   constructor(props){
     super(props);
     this.state = {
-
+      query: '',
     };
+  }
+
+  updateQuery(q) {
+    this.setState({ query: q.trim() });
   }
 
   render() {
     const { myLocations, myMarkers, showInfoWindow } = this.props;
+    const { query } = this.state;
     let selectedMarker;
+    let showedLocations;
+
+    if (query) {
+      const match = new RegExp(escapeRegExp(query), 'i');
+      showedLocations = myLocations.filter((location) => match.test(location.name));
+    } else {
+      showedLocations = myLocations;
+    }
+    showedLocations.sort(sortBy('name'));
+
     return <div>
-      <input type='text' style={inputStyle} placeholder='Type to filter places...'/>
+      <input type='text'
+        style={inputStyle}
+        placeholder='Type to filter places...'
+        value = {query}
+        onChange = {(event) => this.updateQuery(event.target.value)}
+      />
       <ul style={ulStyle}>
-        { myLocations.map((location) => (<li
+        { showedLocations.map((location) => (<li
           key={location.id}
           onClick={() => {
             selectedMarker = myMarkers.filter((marker) => marker.id === location.id);
