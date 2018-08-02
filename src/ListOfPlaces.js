@@ -65,17 +65,19 @@ class ListOfPlaces extends Component {
         value = {query}
         onChange = {(event) => this.updateQuery(event.target.value)}
       />
-      <ul style={ulStyle}>
-        { showedLocations.map((location) => (<li
-          key={location.id}
-          onClick={() => {
-            selectedMarker = myMarkers.filter((marker) => marker.id === location.id);
-            showInfoWindow(selectedMarker[0]);
-          }}
-          style={liStyle}>
-          {location.name}
-        </li>)) }
-      </ul>
+      <nav>
+        <ul style={ulStyle}>
+          { showedLocations.map((location) => (<li
+            key={location.id}
+            onClick={() => {
+              selectedMarker = myMarkers.filter((marker) => marker.id === location.id);
+              showInfoWindow(selectedMarker[0]);
+            }}
+            style={liStyle}>
+            {location.name}
+          </li>)) }
+        </ul>
+      </nav>
     </div>;
   }
 }

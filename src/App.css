@@ -20,13 +20,13 @@
 
 .container {
   height: 100vh;
+  padding-top: 100px;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
 }
 
 .list {
-  margin-top: 100px;
   width: 20%;
   min-width: 200px;
   max-height: 100vh;

@@ -2,60 +2,70 @@
   {
     "id": 1,
     "name": "Belvedere",
+    "searchString": "Belvedere, Vienna",
     "latitude": 48.191439,
     "longitude": 16.380787
   },
   {
     "id": 2,
     "name": "Hofburg",
+    "searchString": "Hofburg",
     "latitude": 48.206507,
     "longitude": 16.365262
   },
   {
     "id": 3,
     "name": "Volksgarten",
+    "searchString": "Volksgarten, Vienna",
     "latitude": 48.208056,
     "longitude": 16.361111
   },
   {
     "id": 4,
     "name": "Schönbrunn Palace",
+    "searchString": "Schönbrunn Palace",
     "latitude": 48.184516,
     "longitude": 16.311865
   },
   {
     "id": 5,
     "name": "Karlskirche",
+    "searchString": "Karlskirche",
     "latitude": 48.198333,
     "longitude": 16.371389
   },
   {
     "id": 6,
-    "name": "St. Stephen's Cathedral",
+    "name": "Stephansdom",
+    "searchString": "St. Stephen's Cathedral, Vienna",
     "latitude": 48.2085,
     "longitude": 16.373
   },
   {
     "id": 7,
     "name": "Albertina",
+    "searchString": "Albertina",
     "latitude": 48.204167,
     "longitude": 16.368611
   },
   {
     "id": 8,
     "name": "Prater",
+    "searchString": "Prater",
     "latitude": 48.216111,
     "longitude": 16.395556
   },
   {
     "id": 9,
     "name": "Gloriette",
+    "searchString": "Gloriette",
     "latitude": 48.178056,
     "longitude": 16.308333
   },
   {
     "id": 10,
     "name": "Vienna City Hall",
+    "searchString": "Vienna City Hall",
     "latitude": 48.210833,
     "longitude": 16.356944
   }

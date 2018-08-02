@@ -4,6 +4,7 @@ import './App.css';
 import ListOfPlaces from './ListOfPlaces';
 import * as data from './locations.json';
 import * as mapStyle from './mapStyle.json';
+import fetchJsonp from 'fetch-jsonp';
 
 class App extends Component {
   constructor(props){
@@ -27,6 +28,20 @@ class App extends Component {
   initMap() {
     // create the map
     const locations = [...data];
+    // add the content for each location using Wikipedia API
+    for (let location of locations ) {
+      // replace the whitespace in the search string according to wiki API rules
+      let searchString = location.searchString.replace(/ /g, '%20');
+      let url = `https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=${searchString}`;
+      // using fetchJsonp instead just fetch to avoid problem with CORS
+      fetchJsonp(url)
+        .then((response) => response.json())
+        .then((data) => {
+          let content = data.query.pages[Object.keys(data.query.pages)[0]].extract;
+          location.content = content;
+        })
+        .catch(() => location.content = 'content from Wikipedia is not available');
+    }
     const markers = [];
     const map = new window.google.maps.Map(document.getElementById('map'), {
       center: {lat: 48.210033, lng: 16.363449},
@@ -75,7 +90,11 @@ class App extends Component {
       myMap.setCenter(marker.position);
       // set and open the infowindow
       myInfoWindow.marker = marker;
-      myInfoWindow.setContent('<h3>' + marker.title + '</h3>');
+      // filter the corresponding location to have access to location content
+      let location = this.state.myLocations.filter((location) => location.id === marker.id);
+      let urlTitle = location[0].searchString.replace(/ /g, '_');
+      let wikiUrl = `https://en.wikipedia.org/wiki/${urlTitle}`;
+      myInfoWindow.setContent(`<h3> ${marker.title} </h3><p>${location[0].content}</p><a href="${wikiUrl}" target="_blank">see more info on Wikipedia</a>`);
       myInfoWindow.open(myMap, marker);
       myInfoWindow.addListener('closeclick', () => myInfoWindow.setMarker = null);
       this.setState({currentMarker: marker});
