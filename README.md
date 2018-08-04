@@ -10,13 +10,14 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 * start the development server with `npm start`
 * the app will run on `http://localhost:3000/`
 
-## Project Criterias
+## Project Dependencies
 * [Google Maps Api](https://developers.google.com/maps/documentation/)
 * [Wikipedia Api](https://www.mediawiki.org/wiki/API:Main_page)
 * [react-async-script-loader](https://www.npmjs.com/package/react-async-script-loader) for loading the Google Map
 * [fetch-jsonp](https://github.com/camsong/fetch-jsonp) for fetching data from Wikipedia API
 * [react-icons](https://react-icons.netlify.com/#/) for the hamburger menu icon
 * style for Google map is from [Snazzy Maps](https://snazzymaps.com/style/44364/test-marseille)
+* web browser: Google Chrome (recommended), Mozilla Firefox
 
 ## Project Criterias
 * Responsiveness - all application components render on-screen in a responsive manner.
