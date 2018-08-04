@@ -14,6 +14,7 @@ const liStyle = {
   'fontWeight': 'bold',
   'lineHeight': '3',
   'cursor': 'pointer',
+  'textDecoration': 'none',
 };
 
 const inputStyle = {
@@ -67,14 +68,15 @@ class ListOfPlaces extends Component {
       />
       <nav>
         <ul style={ulStyle}>
-          { showedLocations.map((location) => (<li
+          { showedLocations.map((location) => (<li role="button"
             key={location.id}
             onClick={() => {
               selectedMarker = myMarkers.filter((marker) => marker.id === location.id);
               showInfoWindow(selectedMarker[0]);
             }}
             style={liStyle}>
-            {location.name}
+            {/* using a tag to add list of places to tab-order, so user can navigate the page using tab key */}
+            <a href='#' style={liStyle}>{location.name}</a>
           </li>)) }
         </ul>
       </nav>
