@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import scriptLoader from 'react-async-script-loader';
 import './App.css';
 import ListOfPlaces from './ListOfPlaces';
+import MenuIcon from './MenuIcon';
 import * as data from './locations.json';
 import * as mapStyle from './mapStyle.json';
 import fetchJsonp from 'fetch-jsonp';
@@ -109,7 +110,10 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Top 10 places in Vienna</h1>
+          <h1 className="App-title">
+            <MenuIcon />
+            Top 10 places in Vienna
+          </h1>
         </header>
         <div className="container">
           <div className="list">
