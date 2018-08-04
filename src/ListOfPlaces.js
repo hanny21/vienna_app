@@ -64,6 +64,7 @@ class ListOfPlaces extends Component {
         style={inputStyle}
         placeholder='Type to filter places...'
         value = {query}
+        aria-label='type here to filter the locations'
         onChange = {(event) => this.updateQuery(event.target.value)}
       />
       <nav>
@@ -76,7 +77,7 @@ class ListOfPlaces extends Component {
             }}
             style={liStyle}>
             {/* using a tag to add list of places to tab-order, so user can navigate the page using tab key */}
-            <a href='#' style={liStyle}>{location.name}</a>
+            <a href='#' style={liStyle} aria-label={`select ${location.name}`}>{location.name}</a>
           </li>)) }
         </ul>
       </nav>

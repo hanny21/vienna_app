@@ -26,13 +26,13 @@
 }
 
 .list {
-  width: 20%;
-  min-width: 200px;
+  width: 300px;
   max-height: 100vh;
   padding-top: 100px;
   background-color: #990099;
 }
 
 .containerMap {
-  width: 80%;
+  padding-top: 100px;
+  width: calc(100% - 300px);
 }

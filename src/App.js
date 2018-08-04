@@ -17,8 +17,10 @@ class App extends Component {
       currentMarker: {},
       myInfoWindow: {},
       wikiError: false,
+      menuIsOpen: true,
     };
     this.showInfoWindow = this.showInfoWindow.bind(this);
+    this.toggleMenu = this.toggleMenu.bind(this);
   }
 
   componentWillReceiveProps ({ isScriptLoadSucceed }) {
@@ -99,11 +101,21 @@ class App extends Component {
       let location = this.state.myLocations.filter((location) => location.id === marker.id);
       let urlTitle = location[0].searchString.replace(' ', '_');
       let wikiUrl = this.state.wikiError ? 'https://en.wikipedia.org/wiki/' : `https://en.wikipedia.org/wiki/${urlTitle}`;
-      myInfoWindow.setContent(`<h3> ${marker.title} </h3><p>${location[0].content}</p><a href="${wikiUrl}" target="_blank">see more info on Wikipedia</a>`);
+      myInfoWindow.setContent(`<div tabIndex="0"><h3> ${marker.title} </h3><p>${location[0].content}</p><a href="${wikiUrl}" target="_blank">see more info on Wikipedia</a></div>`);
       myInfoWindow.open(myMap, marker);
       myInfoWindow.addListener('closeclick', () => myInfoWindow.setMarker = null);
       this.setState({currentMarker: marker});
     }
+  }
+
+  toggleMenu() {
+    const listMenu = document.querySelector('.list');
+    const map = document.querySelector('.containerMap');
+    const open = this.state.menuIsOpen;
+    console.log('open:' + open);
+    open ? listMenu.style.marginLeft = '-300px' : listMenu.style.marginLeft = '0px';
+    open ? map.style.width = '100%' : map.style.width = 'calc(100% - 300px)';
+    this.setState({menuIsOpen: !open});
   }
 
   render() {
@@ -111,7 +123,9 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">
-            <MenuIcon />
+            <MenuIcon
+              toggleMenu={ this.toggleMenu }
+            />
             Top 10 places in Vienna
           </h1>
         </header>
