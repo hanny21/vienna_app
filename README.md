@@ -11,6 +11,14 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 * the app will run on `http://localhost:3000/`
 
 ## Project Criterias
+* [Google Maps Api](https://developers.google.com/maps/documentation/)
+* [Wikipedia Api](https://www.mediawiki.org/wiki/API:Main_page)
+* [react-async-script-loader](https://www.npmjs.com/package/react-async-script-loader) for loading the Google Map
+* [fetch-jsonp](https://github.com/camsong/fetch-jsonp) for fetching data from Wikipedia API
+* [react-icons](https://react-icons.netlify.com/#/) for the hamburger menu icon
+* style for Google map is from [Snazzy Maps](https://snazzymaps.com/style/44364/test-marseille)
+
+## Project Criterias
 * Responsiveness - all application components render on-screen in a responsive manner.
 * Usability - all application components are usable across modern desktop, tablet, and phone browsers.
 * Includes a text input field or dropdown menu that filters the map markers and list items to locations matching the text input or selection. Filter function runs error-free.
