@@ -15,7 +15,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 * [Wikipedia Api](https://www.mediawiki.org/wiki/API:Main_page)
 * [react-async-script-loader](https://www.npmjs.com/package/react-async-script-loader) for loading the Google Map
 * [fetch-jsonp](https://github.com/camsong/fetch-jsonp) for fetching data from Wikipedia API
-* [react-icons](https://react-icons.netlify.com/#/) for the hamburger menu icon
+* [react-icons](https://react-icons.netlify.com/#/) for the hamburger menu and exclamation mark icon
 * style for Google map is from [Snazzy Maps](https://snazzymaps.com/style/44364/test-marseille)
 * web browser: Google Chrome (recommended), Mozilla Firefox
 * service worker: the App is using the service worker provided by [Create React App](https://github.com/facebookincubator/create-react-app), this service worker works only in production mode. To run build use `npm run build` command.
