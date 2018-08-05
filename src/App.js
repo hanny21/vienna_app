@@ -6,6 +6,7 @@ import MenuIcon from './MenuIcon';
 import * as data from './locations.json';
 import * as mapStyle from './mapStyle.json';
 import fetchJsonp from 'fetch-jsonp';
+import { MdError } from 'react-icons/md';
 
 class App extends Component {
   constructor(props){
@@ -16,6 +17,7 @@ class App extends Component {
       myMarkers: [],
       currentMarker: {},
       myInfoWindow: {},
+      googleMapsError: false,
       wikiError: false,
       menuIsOpen: true,
     };
@@ -26,6 +28,8 @@ class App extends Component {
   componentWillReceiveProps ({ isScriptLoadSucceed }) {
     if (isScriptLoadSucceed) {
       this.initMap();
+    } else {
+      this.setState({googleMapsError: true});
     }
   }
 
@@ -56,7 +60,7 @@ class App extends Component {
       mapTypeControl: false,
       styles: mapStyle,
     });
-    // create InfoWindow and bounds
+    // create InfoWindow
     const largeInfowindow = new window.google.maps.InfoWindow();
     // create the markers
     for (let location of locations) {
@@ -84,6 +88,7 @@ class App extends Component {
       myLocations: locations,
       myMarkers: markers,
       myInfoWindow: largeInfowindow,
+      googleMapsError: false,
     });
   }
 
@@ -100,6 +105,7 @@ class App extends Component {
       // filter the corresponding location to have access to location content
       let location = this.state.myLocations.filter((location) => location.id === marker.id);
       let urlTitle = location[0].searchString.replace(' ', '_');
+      // if the content for Wikipedia was not loaded, the link should go to Wikipedia main page
       let wikiUrl = this.state.wikiError ? 'https://en.wikipedia.org/wiki/' : `https://en.wikipedia.org/wiki/${urlTitle}`;
       myInfoWindow.setContent(`<div tabIndex="0"><h3> ${marker.title} </h3><p>${location[0].content}</p><a href="${wikiUrl}" target="_blank">see more info on Wikipedia</a></div>`);
       myInfoWindow.open(myMap, marker);
@@ -120,7 +126,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="App" role="main">
         <header className="App-header">
           <h1 className="App-title">
             <MenuIcon
@@ -139,6 +145,8 @@ class App extends Component {
             />
           </div>
           <div id="map" className="containerMap" role="application">
+            {/* load the error message if Google Map not loaded properly */} 
+            {this.state.googleMapsError ? <div className="error"><MdError className="exclamationMark" />Google Map cannot be loaded :( <br/> Check your internter connection and reload the page. </div> : ''}
           </div>
         </div>
       </div>

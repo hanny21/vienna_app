@@ -12,7 +12,7 @@ const iconStyle = {
 class MenuIcon extends Component {
   render() {
     return <a href='#'
-      style={iconStyle}
+      style={iconStyle}      
       tabIndex='-1'
       onClick={this.props.toggleMenu} >
       <MdMenu />

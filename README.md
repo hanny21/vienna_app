@@ -18,6 +18,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 * [react-icons](https://react-icons.netlify.com/#/) for the hamburger menu icon
 * style for Google map is from [Snazzy Maps](https://snazzymaps.com/style/44364/test-marseille)
 * web browser: Google Chrome (recommended), Mozilla Firefox
+* service worker: the App is using the service worker provided by [Create React App](https://github.com/facebookincubator/create-react-app), this service worker works only in production mode. To run build use `npm run build` command.
 
 ## Project Criterias
 * Responsiveness - all application components render on-screen in a responsive manner.

@@ -36,3 +36,18 @@
   padding-top: 100px;
   width: calc(100% - 300px);
 }
+
+.error {
+  border: 1px solid #f33;
+  border-radius: 5px;
+  background-color: #f33;
+  color: #fff;
+  padding: 20px;
+  margin-top: 20px;
+  display: inline-block;
+}
+
+.exclamationMark {
+  font-size: 1.25em;
+  margin-right: 10px;
+}
